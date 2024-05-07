@@ -4,9 +4,18 @@ import Wrapper from "../components/Wrapper";
 import close from "/Close.svg";
 import { z } from "zod";
 import { useNavigate } from "react-router-dom";
+import Input from "../components/Input";
 function SignUp() {
-  const [name, setName] = useState<String>("");
-  const [email, setEmail] = useState<String>("");
+  type inputValues = {
+    name: string,
+    email: string
+  }
+  const [inputValues, setInputValues] = useState<inputValues>({
+    name: "",
+    email: ""
+  });
+
+  // const [email, setEmail] = useState<String>("");
   const [error, setError] = useState<string | null>(null);
 
   const navigate = useNavigate()
@@ -16,16 +25,16 @@ function SignUp() {
   const [disabled, setDisabled] = useState<boolean>(true);
 
   useEffect(() => {
-    if (name !== "" && email !== "") {
+    if (inputValues.name !== "" && inputValues.email !== "") {
       setDisabled(false);
     } else {
       setDisabled(true);
     }
-  }, [name, email]);
+  }, [inputValues]);
 
-  const handleChange = (e: React.SyntheticEvent) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    const { success } = emailSchema.safeParse(email);
+    const { success } = emailSchema.safeParse(inputValues.email);
     if (!success) {
       setError("Enter a valid email address");
     } else {
@@ -36,6 +45,14 @@ function SignUp() {
 
   const handleClose = () => {
     navigate("/")
+  }
+
+  const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {
+    const {name, value} = e.target
+    setInputValues({
+      ...inputValues,
+      [name]: value
+    })
   }
   return (
       <Wrapper>
@@ -66,24 +83,12 @@ function SignUp() {
           <h2 className="text-[56px] font-semibold text-center leading-tight">
             Start your success Journey here!
           </h2>
-          <div className="flex gap-12 mt-16 flex-col items-center w-[417px]">
+          <form className="flex gap-12 mt-16 flex-col items-center w-[417px]">
             <div className="w-full flex flex-col gap-6">
-              <input
-                type="text"
-                className="px-9 w-full py-6  rounded-[64px] bg-[#efefef] placeholder:text-xl placeholder:font-medium placeholder:text-[#827A7A]"
-                name=""
-                placeholder="Enter your name"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />{" "}
-              <input
-                type="text"
-                className="px-9 w-full py-6 rounded-[64px] bg-[#efefef] placeholder:text-xl placeholder:font-medium placeholder:text-[#827A7A]"
-                name=""
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
+              <Input name="name" placeholder="Enter your name" handleChange={handleChange}/>
+              <Input
+                name="email"
+                handleChange={handleChange}
                 placeholder="Enter your email"
               />
               {error && (
@@ -107,11 +112,11 @@ function SignUp() {
             <button
               className="bg-black px-12 py-6 w-full disabled:bg-[#c9c9c9] rounded-[107px] text-white"
               disabled={disabled}
-              onClick={handleChange}
+              onClick={handleSubmit}
             >
               Submit
             </button>
-          </div>
+          </form>
         </div>
       </Wrapper>
   );
