@@ -15,10 +15,10 @@ function Navbar() {
           <img src={logo} className="object-contain" alt="" />
         </div>
         <div className="flex gap-4">
-          <button onClick={handleGetProjects} className="px-10 border-[1.31px] py-[16px] hover:bg-[#F1F1F1] border-[#EAEAEA] rounded-full">
+          <button onClick={handleGetProjects} className="px-10 transition-colors ease-in-out duration-300 border-[1.31px] py-[16px] hover:bg-[#F1F1F1] border-[#EAEAEA] rounded-full">
             Get Projects
           </button>
-          <button className="px-10 py-7 border bg-[#1C1C1C] hover:bg-[#4E4E4E] rounded-full text-white">
+          <button className="px-10 transition-colors ease-in-out duration-300 py-7 border bg-[#1C1C1C] hover:bg-[#4E4E4E] rounded-full text-white">
             Onboard Talent
           </button>
         </div>

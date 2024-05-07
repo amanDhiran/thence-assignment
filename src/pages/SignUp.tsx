@@ -71,7 +71,7 @@ function SignUp() {
               />
             </svg>
           </div>
-          <button onClick={handleClose} className="border hover:bg-[#F1F1F1] border-[#CACACA] rounded-full p-2">
+          <button onClick={handleClose} className="border hover:bg-[#F1F1F1] border-[#CACACA] transition-colors ease-in-out duration-300 rounded-full p-2">
             <img src={close} alt="" />
           </button>
         </div>
@@ -110,7 +110,7 @@ function SignUp() {
               )}
             </div>
             <button
-              className="bg-black px-12 py-6 w-full disabled:bg-[#c9c9c9] rounded-[107px] text-white"
+              className="bg-black px-12 py-6 w-full disabled:bg-[#c9c9c9] transition-colors ease-in-out duration-300 hover:bg-[#4E4E4E] rounded-[107px] text-white"
               disabled={disabled}
               onClick={handleSubmit}
             >

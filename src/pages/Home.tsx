@@ -29,7 +29,7 @@ function Home() {
                 <div className="h-3 w-3 rounded-full hover:bg-[#CAD0CB] bg-[#E4E3E3]"></div>
                 <div className="h-3 w-3 rounded-full hover:bg-[#CAD0CB] bg-[#E4E3E3]"></div>
               </div>
-              <button className="text-xl mt-28 flex items-center gap-4 font-semibold px-10 py-8 hover:bg-[#4E4E4E] bg-black text-white rounded-full self-start">
+              <button className="text-xl transition-colors ease-in-out duration-300 mt-28 flex items-center gap-4 font-semibold px-10 py-8 hover:bg-[#4E4E4E] bg-black text-white rounded-full self-start">
                 Explore More{" "}
                 <svg
                   width="16"
